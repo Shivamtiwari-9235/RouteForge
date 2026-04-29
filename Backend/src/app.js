@@ -17,7 +17,7 @@ app.use(helmet({
 }));
 
 const corsOrigin = process.env.NODE_ENV === 'production'
-  ? config.frontendUrl
+  ? (process.env.FRONTEND_URL || ['https://silly-genie-ba3255.netlify.app', 'https://routeforge-75t7.onrender.com'])
   : true;
 
 app.use(cors({ origin: corsOrigin, credentials: true }));

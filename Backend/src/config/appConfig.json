@@ -1,0 +1,43 @@
+{
+  "app": {
+    "name": "RouteForge",
+    "theme": "dark",
+    "language": "en"
+  },
+  "auth": {
+    "methods": ["email_password"],
+    "ui": {
+      "logo": "/logo.svg",
+      "primaryColor": "#6C63FF"
+    }
+  },
+  "pages": [
+    {
+      "id": "dashboard",
+      "title": "Overview",
+      "layout": "dashboard",
+      "model": "Dashboard"
+    },
+    {
+      "id": "tasks",
+      "title": "My Tasks",
+      "layout": "table",
+      "model": "Task",
+      "columns": [
+        { "field": "title", "type": "text", "label": "Task", "required": true, "searchable": true },
+        { "field": "status", "type": "select", "label": "Status", "options": ["todo", "in-progress", "done"], "required": true },
+        { "field": "dueDate", "type": "date", "label": "Due Date" },
+        { "field": "priority", "type": "badge", "label": "Priority", "options": ["low", "medium", "high"], "required": true },
+        { "field": "notes", "type": "textarea", "label": "Notes" },
+        { "field": "attachment", "type": "file", "label": "Attachment" }
+      ],
+      "actions": ["create", "edit", "delete", "filter", "csv_import"]
+    }
+  ],
+  "api": {
+    "endpoints": [
+      { "path": "/tasks", "method": "GET", "model": "Task", "auth": true },
+      { "path": "/tasks", "method": "POST", "model": "Task", "auth": true }
+    ]
+  }
+}

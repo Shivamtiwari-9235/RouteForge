@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  min-height: 100%;
+  background: #0F0F1A;
+  color: #fff;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+.background-panel {
+  background: rgba(26, 26, 46, 0.92);
+  border: 1px solid #2A2A4A;
+  border-radius: 16px;
+}
+
+.shadow-card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+input, select, textarea {
+  background: #0F0F1A;
+  border: 1px solid #2A2A4A;
+  color: #FFFFFF;
+  border-radius: 10px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #6C63FF;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(108, 99, 255, 0.45);
+  border-radius: 999px;
+}

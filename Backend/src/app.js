@@ -16,9 +16,11 @@ app.use(helmet({
   crossOriginEmbedderPolicy: process.env.NODE_ENV === 'production'
 }));
 
-const corsOrigin = process.env.NODE_ENV === 'production'
-  ? (process.env.FRONTEND_URL || ['https://silly-genie-ba3255.netlify.app', 'https://routeforge-75t7.onrender.com'])
-  : true;
+const corsOrigin = process.env.FRONTEND_URL || [
+  'https://silly-genie-ba3255.netlify.app',
+  'https://routeforge-75t7.onrender.com',
+  'http://localhost:5173' // fallback for development
+];
 
 app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(cookieParser());

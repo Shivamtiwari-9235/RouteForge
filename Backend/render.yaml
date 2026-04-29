@@ -11,6 +11,12 @@ services:
         value: 5000
       - key: FRONTEND_URL
         value: https://silly-genie-ba3255.netlify.app
+      - key: MONGODB_URI
+        value: mongodb+srv://shivamt0099_db_user:pz9fq8ALa8V8eGr6@cluster0.llotekq.mongodb.net/?appName=Cluster0
+      - key: JWT_SECRET
+        value: replace-with-secret
+      - key: JWT_REFRESH_SECRET
+        value: replace-with-refresh-secret
       - key: CONFIG_SOURCE
         value: local
       - key: CONFIG_PATH

@@ -16,13 +16,27 @@ app.use(helmet({
   crossOriginEmbedderPolicy: process.env.NODE_ENV === 'production'
 }));
 
-const corsOrigin = process.env.FRONTEND_URL || [
+const corsOrigin = [
   'https://silly-genie-ba3255.netlify.app',
   'https://routeforge-75t7.onrender.com',
-  'http://localhost:5173' // fallback for development
-];
+  'http://localhost:5173', // development fallback
+  process.env.FRONTEND_URL // additional configured URL
+].filter(Boolean); // remove any falsy values
 
-app.use(cors({ origin: corsOrigin, credentials: true }));
+app.use(cors({
+  origin: corsOrigin,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
+
+// Handle preflight OPTIONS requests
+app.options('*', cors({
+  origin: corsOrigin,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
 app.use(cookieParser());
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true, limit: '5mb' }));

@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'fs';
 import { param, validationResult } from 'express-validator';
 import multer from 'multer';
 import path from 'path';
@@ -22,6 +23,12 @@ const paginationMeta = (total, page, limit) => ({ page, limit, total });
 // Multer configuration for file uploads
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const uploadsDir = path.join(__dirname, '../../uploads');
+
+try {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+} catch (error) {
+  logger.error('UPLOADS_DIRECTORY_ERROR', error);
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

@@ -80,7 +80,6 @@ export default function DynamicPage() {
             payload.append(key, value);
           }
         });
-        headers['Content-Type'] = 'multipart/form-data';
       }
 
       const response = await api.post(`/${modelPath}`, payload, { headers });
@@ -119,7 +118,6 @@ export default function DynamicPage() {
             payload.append(key, value);
           }
         });
-        headers['Content-Type'] = 'multipart/form-data';
       }
 
       const response = await api.put(`/${modelPath}/${activeItem._id}`, payload, { headers });

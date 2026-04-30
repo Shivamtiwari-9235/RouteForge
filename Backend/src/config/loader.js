@@ -1,7 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import config from './index.js';
 import { logger } from '../utils/logger.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const computeLineNumber = (jsonText, pos) => {
   const lines = jsonText.slice(0, pos).split(/\r?\n/);
@@ -34,10 +37,11 @@ const loadAppConfig = async () => {
     return loaded;
   }
 
-  const filePath = path.resolve(process.cwd(), config.configPath);
+  // Resolve path relative to current directory (__dirname) for production compatibility
+  const filePath = path.resolve(__dirname, './appConfig.json');
   const raw = await fs.readFile(filePath, 'utf-8');
-  const loaded = parseJson(raw, config.configPath);
-  logger.info('Loaded local app config');
+  const loaded = parseJson(raw, filePath);
+  logger.info('Loaded local app config from:', filePath);
   return loaded;
 };
 
